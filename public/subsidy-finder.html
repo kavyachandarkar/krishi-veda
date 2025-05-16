@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Subsidy Finder - Krishi Veda</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #2e8b57;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header .logo h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 20px;
+            background: #fff;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        #search-box {
+            display: flex;
+            margin: 20px 0;
+        }
+
+        #search-box input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        #search-box button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #2e8b57;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        #search-box button:hover {
+            background-color: #276c43;
+        }
+
+        #search-results {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2e8b57;
+            color: white;
+        }
+
+        td a {
+            color: #2e8b57;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #2e8b57;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Language Switcher Button Styling */
+        #language-switcher {
+            display: block;
+            background: #2e8b57;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #language-switcher:hover {
+            background: #276c43;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 id="logo-text">AgriHelp</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" id="home-link">Home</a></li>
+                <li><a href="chatbot.html" id="chatbot-link">Chatbot Assistance</a></li>
+                <li><a href="product-authentication.html" id="authentication-link">Product Authentication</a></li>
+                <li><a href="subsidy-finder.html" id="subsidy-link">Subsidy Finder</a></li>
+                <li><a href="index.html#weather" id="weather-link">Weather & Alerts</a></li>
+                <li><a href="index.html#contact" id="contact-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <button id="language-switcher">Change to Hindi</button>
+
+    <section id="subsidy-finder">
+        <div class="content">
+            <h2 id="find-subsidies-heading">Find Subsidies</h2>
+            <img src="images/subsidy.jpeg" alt="Subsidy Management" class="section-img">
+            <p id="subsidy-description">Use the search tool below to find information on subsidies available for farmers.</p>
+
+            <div id="search-box">
+                <input type="text" id="search-query" placeholder="Search for subsidies...">
+                <button id="search-btn">Search</button>
+            </div>
+            <div id="search-results"></div>
+
+            <h3 id="useful-links-heading">Useful Links to Government Subsidies:</h3>
+            <ul id="useful-links">
+                <li><a href="https://www.example1.gov/subsidies" target="_blank" id="link-1">Subsidy Program 1</a></li>
+                <li><a href="https://www.example2.gov/subsidies" target="_blank" id="link-2">Subsidy Program 2</a></li>
+                <li><a href="https://www.example3.gov/subsidies" target="_blank" id="link-3">Subsidy Program 3</a></li>
+                <li><a href="https://www.example4.gov/subsidies" target="_blank" id="link-4">Subsidy Program 4</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p id="footer-text">&copy; 2024 Krishi Veda. All rights reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        const languageSwitcher = document.getElementById('language-switcher');
+        const texts = {
+            english: {
+                title: 'Subsidy Finder - Krishi Veda',
+                logo: 'AgriHelp',
+                homeLink: 'Home',
+                chatbotLink: 'Chatbot Assistance',
+                authenticationLink: 'Product Authentication',
+                subsidyLink: 'Subsidy Finder',
+                weatherLink: 'Weather & Alerts',
+                contactLink: 'Contact',
+                findSubsidiesHeading: 'Find Subsidies',
+                subsidyDescription: 'Use the search tool below to find information on subsidies available for farmers.',
+                usefulLinksHeading: 'Useful Links to Government Subsidies:',
+                link1: 'Subsidy Program 1',
+                link2: 'Subsidy Program 2',
+                link3: 'Subsidy Program 3',
+                link4: 'Subsidy Program 4',
+                footerText: '© 2024 Krishi Veda. All rights reserved.',
+                languageSwitcher: 'Change to Hindi'
+            },
+            hindi: {
+                title: 'सहायता प्राप्ति - कृषि वेद',
+                logo: 'कृषि वेद',
+                homeLink: 'होम',
+                chatbotLink: 'चैटबॉट सहायता',
+                authenticationLink: 'उत्पाद प्रमाणीकरण',
+                subsidyLink: 'सहायता प्राप्ति',
+                weatherLink: 'मौसम और अलर्ट',
+                contactLink: 'संपर्क',
+                findSubsidiesHeading: 'सहायता प्राप्ति खोजें',
+                subsidyDescription: 'किसानों के लिए उपलब्ध सहायता की जानकारी खोजने के लिए नीचे दिए गए खोज उपकरण का उपयोग करें।',
+                usefulLinksHeading: 'सरकारी सहायता के लिए उपयोगी लिंक:',
+                link1: 'सहायता कार्यक्रम 1',
+                link2: 'सहायता कार्यक्रम 2',
+                link3: 'सहायता कार्यक्रम 3',
+                link4: 'सहायता कार्यक्रम 4',
+                footerText: '© 2024 कृषि वेद. सभी अधिकार सुरक्षित।',
+                languageSwitcher: 'Change to English'
+            }
+        };
+
+        const updateLanguage = (lang) => {
+            document.getElementById('page-title').textContent = texts[lang].title;
+            document.getElementById('logo-text').textContent = texts[lang].logo;
+            document.getElementById('home-link').textContent = texts[lang].homeLink;
+            document.getElementById('chatbot-link').textContent = texts[lang].chatbotLink;
+            document.getElementById('authentication-link').textContent = texts[lang].authenticationLink;
+            document.getElementById('subsidy-link').textContent = texts[lang].subsidyLink;
+            document.getElementById('weather-link').textContent = texts[lang].weatherLink;
+            document.getElementById('contact-link').textContent = texts[lang].contactLink;
+            document.getElementById('find-subsidies-heading').textContent = texts[lang].findSubsidiesHeading;
+            document.getElementById('subsidy-description').textContent = texts[lang].subsidyDescription;
+            document.getElementById('useful-links-heading').textContent = texts[lang].usefulLinksHeading;
+            document.getElementById('link-1').textContent = texts[lang].link1;
+            document.getElementById('link-2').textContent = texts[lang].link2;
+            document.getElementById('link-3').textContent = texts[lang].link3;
+            document.getElementById('link-4').textContent = texts[lang].link4;
+            document.getElementById('footer-text').textContent = texts[lang].footerText;
+
+            document.documentElement.lang = lang === 'hindi' ? 'hi' : 'en';
+            languageSwitcher.textContent = texts[lang].languageSwitcher;
+        };
+
+        languageSwitcher.addEventListener('click', () => {
+            const currentLang = document.documentElement.lang === 'hi' ? 'english' : 'hindi';
+            updateLanguage(currentLang);
+        });
+
+        // Initialize with the current language
+        updateLanguage(document.documentElement.lang === 'hi' ? 'hindi' : 'english');
+
+        document.getElementById('search-btn').addEventListener('click', function() {
+            const query = document.getElementById('search-query').value.trim();
+            if (!query) {
+                alert('Please enter a search term.');
+                return;
+            }
+
+            const apiKey = 'AIzaSyDI55Ufq-70jL3APTXHFcynEM4P3bwgSOc'; // Replace with your actual API Key
+            const cx = '655cb8dd5470148fe'; // Replace with your actual Custom Search Engine ID
+            const searchUrl = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(query)}&key=${apiKey}&cx=${cx}`;
+
+            fetch(searchUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.items) {
+                        const results = `
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${data.items.map(item => `
+                                        <tr>
+                                            <td><a href="${item.link}" target="_blank">${item.title}</a></td>
+                                            <td>${item.snippet}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>`;
+                        document.getElementById('search-results').innerHTML = results;
+                    } else {
+                        document.getElementById('search-results').innerHTML = '<p>No results found.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                    document.getElementById('search-results').innerHTML = 'Error fetching results.';
+                });
+        });
+    </script>
+</body>
+</html>

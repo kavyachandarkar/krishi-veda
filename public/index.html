@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrated Agricultural Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Background image styling */
+        body {
+            background-image: url('images/wheat-field-image.jpg'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Chatbot button styling */
+        #chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #28a745, #34c38f);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        #chatbot-button:hover {
+            background: linear-gradient(45deg, #34c38f, #28a745);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        #chatbot-button:active {
+            background: linear-gradient(45deg, #28a745, #34c38f);
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Chatbot iframe container styling */
+        #chatbot-container {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        #chatbot-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* Other section styling */
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            color: #28a745;
+        }
+
+        .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #34c38f;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #28a745;
+        }
+
+        /* Language Switcher Button Styling */
+        #language-switcher {
+            display: block;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #language-switcher:hover {
+            background: #34c38f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 id="logo-text">Krishi Veda</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home" id="home-link">Home</a></li>
+                <li><a href="chatbot.html" id="chatbot-link">Chatbot Assistance</a></li>
+                <li><a href="#authentication" id="authentication-link">Product Authentication</a></li>
+                <li><a href="#subsidy" id="subsidy-link">Subsidy Management</a></li>
+                <li><a href="#weather" id="weather-link">Weather and Alerts</a></li>
+                <li><a href="#contact" id="contact-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Language Switcher Button -->
+    <button id="language-switcher">Change to Hindi</button>
+
+    <section id="home" class="section">
+        <div class="content">
+            <h2 id="home-heading">Welcome to Krishi Veda</h2>
+            <img src="images/home.jpg" alt="Agricultural Landscape" class="section-img">
+            <p id="home-paragraph">Your one-stop solution for all agricultural needs. From real-time chatbot assistance to localized weather alerts, we’ve got you covered.</p>
+        </div>
+    </section>
+
+    <section id="chatbot" class="section">
+        <div class="content">
+            <h2 id="chatbot-heading">Real-Time Chatbot Assistance</h2>
+            <img src="images/chatbot.jpg" alt="Chatbot Interaction" class="section-img">
+            <p id="chatbot-paragraph">Get instant, context-based support and guidance through our inbuilt chatbot, tailored to your specific needs.</p>
+            <a href="chatbot.html"><button class="btn" id="chatbot-button-text">Chat Now</button></a>
+        </div>
+    </section>
+
+    <section id="authentication" class="section">
+        <div class="content">
+            <h2 id="authentication-heading">Product Authentication</h2>
+            <img src="images/authenticate.png" alt="Product Authentication" class="section-img">
+            <p id="authentication-paragraph">Verify the legitimacy of fertilizers and report counterfeits to protect your crops and investments.</p>
+            <a href="product-authentication.html"><button class="btn" id="authentication-button-text">Verify Product</button></a>
+        </div>
+    </section>
+    
+    <section id="subsidy" class="section">
+        <div class="content">
+            <h2 id="subsidy-heading">Subsidy and Aid Management</h2>
+            <img src="images/subsidy.jpeg" alt="Subsidy Management" class="section-img">
+            <p id="subsidy-paragraph">Find, apply for, and manage subsidies and financial assistance that match your farming profile.</p>
+            <a href="subsidy-finder.html"><button class="btn" id="subsidy-button-text">Find Subsidies</button></a>
+        </div>
+    </section>
+    
+    <section id="weather" class="section">
+        <div class="content">
+            <h2 id="weather-heading">Localized Weather and Disease Alerts</h2>
+            <img src="images/weather.jpeg" alt="Weather Alerts" class="section-img">
+            <p id="weather-paragraph">Receive accurate weather forecasts and crop disease diagnostics for optimized production.</p>
+            <a href="weather.html"><button class="btn" id="weather-button-text">Check Weather</button></a>
+        </div>
+    </section>
+    
+    <section id="contact" class="section">
+        <h2 id="contact-heading">Contact Us</h2>
+        <img src="images/contactus.png" alt="Contact Us" class="section-img">
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button id="btn" type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p id="footer-text">© 2024 Krishi Veda. All rights reserved.</p>
+    </footer>
+
+    <!-- Chatbot button and container -->
+    <button id="chatbot-button">Chat with Us</button>
+    <div id="chatbot-container">
+        <iframe src="https://cdn.botpress.cloud/webchat/v2/shareable.html?botId=242d0307-f6b9-4792-bd88-84422d3d9149"></iframe>
+    </div>
+
+    <script>
+        const chatbotButton = document.getElementById('chatbot-button');
+        const chatbotContainer = document.getElementById('chatbot-container');
+        const languageSwitcher = document.getElementById('language-switcher');
+        
+        const texts = {
+            english: {
+                logo: 'Krishi Veda',
+                homeHeading: 'Welcome to Krishi Veda',
+                homeParagraph: 'Your one-stop solution for all agricultural needs. From real-time chatbot assistance to localized weather alerts, we’ve got you covered.',
+                chatbotHeading: 'Real-Time Chatbot Assistance',
+                chatbotParagraph: 'Get instant, context-based support and guidance through our inbuilt chatbot, tailored to your specific needs.',
+                chatbotButtonText: 'Chat Now',
+                authenticationHeading: 'Product Authentication',
+                authenticationParagraph: 'Verify the legitimacy of fertilizers and report counterfeits to protect your crops and investments.',
+                authenticationButtonText: 'Verify Product',
+                subsidyHeading: 'Subsidy and Aid Management',
+                subsidyParagraph: 'Find, apply for, and manage subsidies and financial assistance that match your farming profile.',
+                subsidyButtonText: 'Find Subsidies',
+                weatherHeading: 'Localized Weather and Disease Alerts',
+                weatherParagraph: 'Receive accurate weather forecasts and crop disease diagnostics for optimized production.',
+                weatherButtonText: 'Check Weather',
+                contactHeading: 'Contact Us',
+                contactButtonText: 'Send Message',
+                footerText: '© 2024 Krishi Veda. All rights reserved.',
+                homeLink: 'Home',
+                chatbotLink: 'Chatbot Assistance',
+                authenticationLink: 'Product Authentication',
+                subsidyLink: 'Subsidy Management',
+                weatherLink: 'Weather and Alerts',
+                contactLink: 'Contact'
+            },
+            hindi: {
+                logo: 'कृषि वेद',
+                homeHeading: 'कृषि वेद में आपका स्वागत है',
+                homeParagraph: 'आपकी सभी कृषि आवश्यकताओं के लिए एक-स्टॉप समाधान। वास्तविक समय के चैटबॉट सहायता से लेकर स्थानीय मौसम अलर्ट्स तक, हम आपकी सभी आवश्यकताओं को पूरा करते हैं।',
+                chatbotHeading: 'वास्तविक समय चैटबॉट सहायता',
+                chatbotParagraph: 'आपकी विशिष्ट जरूरतों के अनुसार तत्काल, संदर्भ आधारित समर्थन और मार्गदर्शन प्राप्त करें।',
+                chatbotButtonText: 'चैट करें',
+                authenticationHeading: 'उत्पाद प्रमाणीकरण',
+                authenticationParagraph: 'खादों की वैधता की पुष्टि करें और नकली उत्पादों की रिपोर्ट करें ताकि आपकी फसलें और निवेश सुरक्षित रहें।',
+                authenticationButtonText: 'उत्पाद सत्यापित करें',
+                subsidyHeading: 'सहायता और सब्सिडी प्रबंधन',
+                subsidyParagraph: 'आपकी कृषि प्रोफाइल के अनुसार उपयुक्त सब्सिडी और वित्तीय सहायता प्राप्त करें, आवेदन करें और प्रबंधित करें।',
+                subsidyButtonText: 'सब्सिडी खोजें',
+                weatherHeading: 'स्थानीय मौसम और रोग अलर्ट्स',
+                weatherParagraph: 'सटीक मौसम पूर्वानुमान और फसल रोग निदान प्राप्त करें ताकि आपकी उत्पादन क्षमता को अनुकूलित किया जा सके।',
+                weatherButtonText: 'मौसम देखें',
+                contactHeading: 'संपर्क करें',
+                contactButtonText: 'संदेश भेजें',
+                footerText: '© 2024 Krishi Veda. सभी अधिकार सुरक्षित हैं।',
+                homeLink: 'होम',
+                chatbotLink: 'चैटबॉट सहायता',
+                authenticationLink: 'उत्पाद प्रमाणीकरण',
+                subsidyLink: 'सब्सिडी प्रबंधन',
+                weatherLink: 'मौसम और अलर्ट्स',
+                contactLink: 'संपर्क'
+            }
+        };
+
+        const updateLanguage = (lang) => {
+            document.getElementById('logo-text').textContent = texts[lang].logo;
+            document.getElementById('home-heading').textContent = texts[lang].homeHeading;
+            document.getElementById('home-paragraph').textContent = texts[lang].homeParagraph;
+            document.getElementById('chatbot-heading').textContent = texts[lang].chatbotHeading;
+            document.getElementById('chatbot-paragraph').textContent = texts[lang].chatbotParagraph;
+            document.getElementById('chatbot-button-text').textContent = texts[lang].chatbotButtonText;
+            document.getElementById('authentication-heading').textContent = texts[lang].authenticationHeading;
+            document.getElementById('authentication-paragraph').textContent = texts[lang].authenticationParagraph;
+            document.getElementById('authentication-button-text').textContent = texts[lang].authenticationButtonText;
+            document.getElementById('subsidy-heading').textContent = texts[lang].subsidyHeading;
+            document.getElementById('subsidy-paragraph').textContent = texts[lang].subsidyParagraph;
+            document.getElementById('subsidy-button-text').textContent = texts[lang].subsidyButtonText;
+            document.getElementById('weather-heading').textContent = texts[lang].weatherHeading;
+            document.getElementById('weather-paragraph').textContent = texts[lang].weatherParagraph;
+            document.getElementById('weather-button-text').textContent = texts[lang].weatherButtonText;
+            document.getElementById('contact-heading').textContent = texts[lang].contactHeading;
+            document.getElementById('btn').textContent = texts[lang].contactButtonText;
+            document.getElementById('footer-text').textContent = texts[lang].footerText;
+
+            document.getElementById('home-link').textContent = texts[lang].homeLink;
+            document.getElementById('chatbot-link').textContent = texts[lang].chatbotLink;
+            document.getElementById('authentication-link').textContent = texts[lang].authenticationLink;
+            document.getElementById('subsidy-link').textContent = texts[lang].subsidyLink;
+            document.getElementById('weather-link').textContent = texts[lang].weatherLink;
+            document.getElementById('contact-link').textContent = texts[lang].contactLink;
+
+            document.documentElement.lang = lang === 'hindi' ? 'hi' : 'en';
+            languageSwitcher.textContent = lang === 'hindi' ? 'Change to English' : 'हिंदी में बदलें';
+        };
+
+        languageSwitcher.addEventListener('click', () => {
+            const currentLang = document.documentElement.lang === 'hi' ? 'english' : 'hindi';
+            updateLanguage(currentLang);
+        });
+
+        // Initialize with the current language
+        updateLanguage(document.documentElement.lang === 'hi' ? 'hindi' : 'english');
+
+        chatbotButton.addEventListener('click', () => {
+            if (chatbotContainer.style.display === 'none' || chatbotContainer.style.display === '') {
+                chatbotContainer.style.display = 'block';
+            } else {
+                chatbotContainer.style.display = 'none';
+            }
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            setTimeout(() => {
+                alert(texts[document.documentElement.lang === 'hi' ? 'hindi' : 'english'].contactHeading);
+                document.getElementById('contact-form').reset();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

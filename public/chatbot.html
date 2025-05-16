@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Assistance - Krishi Veda</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://webchat-styler-css.botpress.app/prod/9b52c7ed-0c34-495b-ac2e-78e01f9bb42c/v43555/style.css">
+    <style>
+        /* Chatbot button styling */
+        #chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #28a745, #34c38f);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        #chatbot-button:hover {
+            background: linear-gradient(45deg, #34c38f, #28a745);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        #chatbot-button:active {
+            background: linear-gradient(45deg, #28a745, #34c38f);
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Chatbot iframe container styling */
+        #chatbot-container {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        #chatbot-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* Language Switcher Button Styling */
+        #language-switcher {
+            display: block;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        #language-switcher:hover {
+            background: #34c38f;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #28a745;
+        }
+
+        footer {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            text-align: center;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            bottom: 0;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 id="header-title">Krishi Veda</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" id="nav-home">Home</a></li>
+                <li><a href="chatbot.html" id="nav-chatbot">Chatbot Assistance</a></li>
+                <li><a href="index.html#authentication" id="nav-authentication">Product Authentication</a></li>
+                <li><a href="index.html#subsidy" id="nav-subsidy">Subsidy Finder</a></li>
+                <li><a href="index.html#weather" id="nav-weather">Weather & Alerts</a></li>
+                <li><a href="index.html#contact" id="nav-contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Language Switcher Button -->
+    <button id="language-switcher">Change to Hindi</button>
+
+    <section id="chatbot">
+        <div class="content">
+            <h2 id="chatbot-heading">Real-Time Chatbot Assistance</h2>
+            <img src="images/chatbot.jpg" alt="Chatbot Interaction" class="section-img">
+            <p id="chatbot-paragraph">Welcome to the Chatbot Assistance page. Here you can interact with our chatbot for real-time support.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p id="footer-text">&copy; 2024 Krishi Veda. All rights reserved.</p>
+    </footer>
+
+    <!-- Chatbot button and container -->
+    <button id="chatbot-button">Chat with us</button>
+    <div id="chatbot-container">
+        <iframe src="https://cdn.botpress.cloud/webchat/v2/shareable.html?botId=242d0307-f6b9-4792-bd88-84422d3d9149"></iframe>
+    </div>
+
+    <script>
+        const chatbotButton = document.getElementById('chatbot-button');
+        const chatbotContainer = document.getElementById('chatbot-container');
+        const languageSwitcher = document.getElementById('language-switcher');
+
+        const texts = {
+            english: {
+                headerTitle: 'Krishi Veda',
+                navHome: 'Home',
+                navChatbot: 'Chatbot Assistance',
+                navAuthentication: 'Product Authentication',
+                navSubsidy: 'Subsidy Finder',
+                navWeather: 'Weather & Alerts',
+                navContact: 'Contact',
+                chatbotHeading: 'Real-Time Chatbot Assistance',
+                chatbotParagraph: 'Welcome to the Chatbot Assistance page. Here you can interact with our chatbot for real-time support.',
+                footerText: '&copy; 2024 Krishi Veda. All rights reserved.',
+                switchText: 'Change to Hindi'
+            },
+            hindi: {
+                headerTitle: 'कृषि वेद',
+                navHome: 'मुखपृष्ठ',
+                navChatbot: 'चैटबॉट सहायता',
+                navAuthentication: 'उत्पाद प्रमाणीकरण',
+                navSubsidy: 'सहायता और सब्सिडी',
+                navWeather: 'मौसम और अलर्ट',
+                navContact: 'संपर्क करें',
+                chatbotHeading: 'वास्तविक समय चैटबॉट सहायता',
+                chatbotParagraph: 'चैटबॉट सहायता पृष्ठ में आपका स्वागत है। यहां आप वास्तविक समय के समर्थन के लिए हमारे चैटबॉट के साथ बातचीत कर सकते हैं।',
+                footerText: '&copy; 2024 कृषि वेद. सर्वाधिकार सुरक्षित।',
+                switchText: 'Change to English'
+            }
+        };
+
+        const updateLanguage = (lang) => {
+            document.getElementById('header-title').textContent = texts[lang].headerTitle;
+            document.getElementById('nav-home').textContent = texts[lang].navHome;
+            document.getElementById('nav-chatbot').textContent = texts[lang].navChatbot;
+            document.getElementById('nav-authentication').textContent = texts[lang].navAuthentication;
+            document.getElementById('nav-subsidy').textContent = texts[lang].navSubsidy;
+            document.getElementById('nav-weather').textContent = texts[lang].navWeather;
+            document.getElementById('nav-contact').textContent = texts[lang].navContact;
+            document.getElementById('chatbot-heading').textContent = texts[lang].chatbotHeading;
+            document.getElementById('chatbot-paragraph').textContent = texts[lang].chatbotParagraph;
+            document.getElementById('footer-text').innerHTML = texts[lang].footerText;
+            languageSwitcher.textContent = texts[lang].switchText;
+            document.documentElement.lang = lang === 'hindi' ? 'hi' : 'en';
+        };
+
+        languageSwitcher.addEventListener('click', () => {
+            const currentLang = document.documentElement.lang === 'hi' ? 'english' : 'hindi';
+            updateLanguage(currentLang);
+        });
+
+        // Initialize with the current language
+        updateLanguage(document.documentElement.lang === 'hi' ? 'hindi' : 'english');
+
+        chatbotButton.addEventListener('click', () => {
+            if (chatbotContainer.style.display === 'none' || chatbotContainer.style.display === '') {
+                chatbotContainer.style.display = 'block';
+            } else {
+                chatbotContainer.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
